@@ -14,6 +14,7 @@ data class Editorial(
     @PrimaryKey(autoGenerate = true ) val idEd: Int = 0,
     val logo: String,
     val name: String,
-    val year: Date,
-    val url: String
+    val year: String,
+    val url: String,
+    var isFavorite: Boolean = false
 )
