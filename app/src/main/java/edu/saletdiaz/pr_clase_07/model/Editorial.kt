@@ -9,11 +9,11 @@ import java.util.Date
  * logo, nombre, año de fundación y
  * la URL de su sitio web -> Pedir permiso para que se vaya a abrir la url
  * Esto se logra con el Tema 3 : Intents y permisos*/
-@Entity(tableName = "editorial")
+@Entity(tableName = "editorials")
 data class Editorial(
-    @PrimaryKey(autoGenerate = true ) val idEd: Int = 0,
+    @PrimaryKey(autoGenerate = true ) val id: Int = 0,
     val logo: String,
-    val name: String,
+    val editorial: String,
     val year: String,
     val url: String,
     var isFavorite: Boolean = false

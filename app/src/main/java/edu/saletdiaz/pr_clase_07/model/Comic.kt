@@ -5,12 +5,12 @@ import androidx.room.PrimaryKey
 
 /**Clase comic la cual se encargará de tener portada, titulo,
  * autor y la editorial a la que pertenece*/
-@Entity(tableName = "comic")
+@Entity(tableName = "comics")
 data class Comic(
     @PrimaryKey(autoGenerate = true)
-    val idComic: Int = 0,
-    val frontPage: String,
+    val id: Int = 0,
+    val cover: String,
     val title: String,
     val author: String,
-    val idEditorial: Int = 0
+    val editorial: Int = 0
 )

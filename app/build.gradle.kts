@@ -50,21 +50,30 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
-    // ROOM dependencies
-    implementation("androidx.room:room-runtime:2.7.2")
-    implementation("androidx.room:room-ktx:2.7.2") // Soporte para Coroutines y Kotlin Extensions.
-    ksp("androidx.room:room-compiler:2.7.2") // KSP para procesamiento de anotaciones.
-    // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.9.3")
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.3")
+
     // Retrofit2
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
+
     // Conversor para JSON (Gson)
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+
     // Corutinas (para llamadas asíncronas)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+
+    // ROOM dependencies
+    implementation("androidx.room:room-runtime:2.7.2")
+    implementation("androidx.room:room-ktx:2.7.2")
+    implementation(libs.firebase.appdistribution.gradle) // Soporte para Coroutines y Kotlin Extensions.
+    ksp("androidx.room:room-compiler:2.7.2") // KSP para procesamiento de anotaciones.
+
+    // Navigation Compose
+    implementation("androidx.navigation:navigation-compose:2.9.3")
+
+    // pullRefresh
+//    implementation("androidx.compose.material3:material3:1.3.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

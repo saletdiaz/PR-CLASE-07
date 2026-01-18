@@ -7,8 +7,8 @@ import androidx.room.Relation
 data class ComicWithEditorial(
     @Embedded val comics: Comic,
     @Relation(
-        parentColumn = "idEditorial",
-        entityColumn = "idEd"
+        parentColumn = "editorial",
+        entityColumn = "id"
     )
     val editorial: Editorial
 )
