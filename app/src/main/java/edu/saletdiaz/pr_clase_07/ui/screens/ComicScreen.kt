@@ -17,9 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,12 +26,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import edu.saletdiaz.pr_clase_07.MainViewModel
 import edu.saletdiaz.pr_clase_07.model.Comic
 import edu.saletdiaz.pr_clase_07.ui.components.AppScaffold
+import edu.saletdiaz.pr_clase_07.R
+
+/**Funcion que mostrara y recorrera los comics con un LazyColumn y con la plantilla
+ * predeterminada de AppScaffold.kt*/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComicScreen(idEditorial: Int, viewModel: MainViewModel, onBack: () -> Unit) {
@@ -45,16 +48,19 @@ fun ComicScreen(idEditorial: Int, viewModel: MainViewModel, onBack: () -> Unit) 
     }
 
     AppScaffold(
-        title = "Comics of the Editorial",
+        title = stringResource(R.string.txt_comic) ,
         navigationIcon = {
             IconButton(onClick = onBack) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back"
+                    contentDescription = stringResource(R.string.btn_back)
                 )
             }
         }
     ) { paddingValues ->
+
+        /**Lanzaremos la lista de comics, llamando a ComicCard para pintar cada tarjetita*/
+
         LazyColumn(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
             items(comics) { comic ->
                 ComicCard(comic)
@@ -63,6 +69,7 @@ fun ComicScreen(idEditorial: Int, viewModel: MainViewModel, onBack: () -> Unit) 
     }
 }
 
+/**Encargado de sacar la plantilla para un comic*/
 @Composable
 fun ComicCard(comic: Comic) {
     Card(
@@ -92,6 +99,8 @@ fun ComicCard(comic: Comic) {
         }
     }
 }
+
+/**Utilizamores Glide para poder cargar las imagenes por internet */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ImagenConGlide(imageUrl: String, modifier: Modifier = Modifier) {
