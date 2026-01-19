@@ -10,11 +10,12 @@ import androidx.compose.runtime.Composable
 /**Clase que se tomara como plantilla para que aparezca el titulo al principio*/
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppScaffold (title: String, screen: @Composable (PaddingValues) -> Unit){
+fun AppScaffold (title: String,navigationIcon: @Composable () -> Unit = {}, screen: @Composable (PaddingValues) -> Unit){
     Scaffold (
         topBar ={
             TopAppBar(
-                title ={Text (text = title)}
+                title = { Text(text = title) },
+                navigationIcon = navigationIcon
             )
         }
     ){  innerPadding -> screen(innerPadding)}

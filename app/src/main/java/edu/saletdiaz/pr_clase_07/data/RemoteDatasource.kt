@@ -5,5 +5,5 @@ class RemoteDatasource {
 
     suspend fun getEditorials() =apiService.getEditorials()
 
-    suspend fun getEditorialById(id: Int) = apiService.getComicsByEditId(id)
+    suspend fun getComicsByEditorial(id: Int) = apiService.getComicsByEditId(id)
 }

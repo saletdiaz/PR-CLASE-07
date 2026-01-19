@@ -1,5 +1,6 @@
 package edu.saletdiaz.pr_clase_07
 
+import android.R.attr.id
 import android.app.Application
 import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.AndroidViewModel
@@ -41,6 +42,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         remoteDatasource = RemoteDatasource()
         localDatasource = LocalDatasource(dao, daoC)
         repository = Repository(remoteDatasource, localDatasource)
+
+        fetchEditorials()
     }
     fun fetchEditorials() {
         viewModelScope.launch {
@@ -57,4 +60,48 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+    /**para actualizar el boton de favoritos*/
+    fun favoritesUpdate(editorial: Editorial) {
+        viewModelScope.launch {
+            val edit = repository.updateFavorite(editorial)
+            _editorials.value = _editorials.value.map {
+                if (it.id == editorial.id) edit else it
+            }
+        }
+    }
+    fun fetchComicsByEditorial(idEditorial: Int) {
+        viewModelScope.launch {
+            _loading.value = true
+            try {
+                val comicsResponse = repository.getComicsByEditorial(idEditorial) ?: emptyList()
+
+                val idEd = _editorials.value.find { it.id == idEditorial }
+                val logoUrl = idEd?.logo ?: ""
+
+                comicsResponse.forEach { comic ->
+                    comic.editorialLogo = logoUrl
+                }
+
+                _comics.value = comicsResponse
+            } catch (e: Exception) {
+                _error.value = e.message
+            } finally {
+                _loading.value = false
+            }
+        }
+    }
+   /* fun fetchAllComics() {
+        viewModelScope.launch {
+            _loading.value = true
+            try {
+                localDatasource.getAllComics().collect { listaCompleta ->
+                    _comics.value = listaCompleta
+                }
+            } catch (e: Exception) {
+                _error.value = e.message
+            } finally {
+                _loading.value = false
+            }
+        }
+    }*/
 }

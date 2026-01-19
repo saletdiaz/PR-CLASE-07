@@ -9,9 +9,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ComicsDAO {
-    @Query("SELECT * FROM comics WHERE editorial = :id")
+    @Query("SELECT * FROM comics")
+    fun getAllComics(): Flow<List<Comic>>
+    @Query("SELECT * FROM comics WHERE editorialId = :id")
     fun getComicsByEditorialId(id:Int): Flow<List<Comic>>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllComics(comics: List<Comic>)
+    fun insertAllComics(comics: List<Comic>)
 }

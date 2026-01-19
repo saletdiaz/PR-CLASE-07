@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import edu.saletdiaz.pr_clase_07.ui.navigation.NavigationHost
+import edu.saletdiaz.pr_clase_07.ui.screens.EditorialScreen
 import edu.saletdiaz.pr_clase_07.ui.theme.PRCLASE07Theme
 
 class MainActivity : ComponentActivity() {
@@ -30,4 +31,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 

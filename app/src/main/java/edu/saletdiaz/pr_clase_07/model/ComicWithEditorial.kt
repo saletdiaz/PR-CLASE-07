@@ -5,10 +5,10 @@ import androidx.room.Relation
 
 /**Clase encargada de mostrar la relación N:1*/
 data class ComicWithEditorial(
-    @Embedded val comics: Comic,
+    @Embedded val editorial: Editorial,
     @Relation(
-        parentColumn = "editorial",
-        entityColumn = "id"
+        parentColumn = "id",
+        entityColumn = "editorial"
     )
-    val editorial: Editorial
+    val comics: List<Comic>
 )

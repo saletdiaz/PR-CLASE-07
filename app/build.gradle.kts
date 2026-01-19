@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -66,7 +68,7 @@ dependencies {
     // ROOM dependencies
     implementation("androidx.room:room-runtime:2.7.2")
     implementation("androidx.room:room-ktx:2.7.2")
-    implementation(libs.firebase.appdistribution.gradle) // Soporte para Coroutines y Kotlin Extensions.
+    //implementation(libs.firebase.appdistribution.gradle) // Soporte para Coroutines y Kotlin Extensions.
     ksp("androidx.room:room-compiler:2.7.2") // KSP para procesamiento de anotaciones.
 
     // Navigation Compose
@@ -74,6 +76,9 @@ dependencies {
 
     // pullRefresh
 //    implementation("androidx.compose.material3:material3:1.3.2")
+
+    // Glide for image loading
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
