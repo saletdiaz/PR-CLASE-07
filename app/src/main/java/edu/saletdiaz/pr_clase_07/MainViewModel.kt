@@ -69,7 +69,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-    fun fetchComicsByEditorial(idEditorial: Int) {
+    /*fun fetchComicsByEditorial(idEditorial: Int) {
         viewModelScope.launch {
             _loading.value = true
             try {
@@ -89,19 +89,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _loading.value = false
             }
         }
-    }
-   /* fun fetchAllComics() {
+    }*/
+    fun fetchComicsByEditorial(idEditorial: Int) {
         viewModelScope.launch {
             _loading.value = true
-            try {
-                localDatasource.getAllComics().collect { listaCompleta ->
-                    _comics.value = listaCompleta
-                }
-            } catch (e: Exception) {
-                _error.value = e.message
-            } finally {
-                _loading.value = false
-            }
+            val res = repository.getComicsByEditorial(idEditorial)
+
+            val logo = _editorials.value.find { it.id == idEditorial }?.logo ?: ""
+
+            res.forEach { it.editorialLogo = logo }
+
+            _comics.value = res
+            _loading.value = false
         }
-    }*/
+    }
 }

@@ -19,10 +19,6 @@ data class Comic(
     @Ignore // solo se usará para la UI
     var editorialLogo: String = ""*/
 ) {
-    /*constructor(id: Int, title: String, author: String?, cover: String?, editorialId: Int)
-    :this(id, title, author, cover,editorialId, "")*/
-    @Ignore
-    val editorial: Editorial? =  null
     @Ignore
     var editorialLogo: String = ""
 }

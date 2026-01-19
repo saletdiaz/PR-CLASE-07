@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 object RetrofitEditorial {
-    private const val BASE_URL = "https://www.javiercarrasco.es/api/"
+    private const val BASE_URL = "https://www.javiercarrasco.es/api/supers/"
 
     val apiService: ApiService by lazy {
         Retrofit.Builder()
@@ -21,10 +21,9 @@ object RetrofitEditorial {
 }
 
 interface ApiService {
-    @GET("supers/editorials")
+    @GET("editorials")
     suspend fun getEditorials(): Response<List<Editorial>>
 
-    @GET("supers/comicsed/{id}")
+    @GET("comicsed/{id}")
     suspend fun getComicsByEditId(@Path("id") id: Int ): Response<List<Comic>>
-    
 }

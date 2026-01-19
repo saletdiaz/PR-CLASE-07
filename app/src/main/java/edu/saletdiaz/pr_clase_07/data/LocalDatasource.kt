@@ -10,15 +10,16 @@ class LocalDatasource (private val dao: EditorialsDAO, val daoC: ComicsDAO) {
     suspend fun insertAllEditorials(editorials: List<Editorial>) {
         dao.insertAllEditorials(editorials)
     }
+    suspend fun insertAllComics(comics: List<Comic>) {
+        daoC.insertAllComics(comics)
+    }
     suspend fun insertEditorial(editorial: Editorial) {
         dao.insertEditorial(editorial)
     }
 
-    /**Obtiene todos los Comics de una sola editorial */
+    /** Obtiene todos los Comics de una sola editorial */
     fun getComicsByEditorialId(idEd: Int): Flow<List<Comic>> =
         daoC.getComicsByEditorialId(idEd)
 
-    suspend fun insertAllComics(comics: List<Comic>) {
-        daoC.insertAllComics(comics)
-    }
+
 }
