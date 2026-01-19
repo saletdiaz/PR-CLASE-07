@@ -1,7 +1,6 @@
 package edu.saletdiaz.pr_clase_07.ui.screens
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,12 +33,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import edu.saletdiaz.pr_clase_07.MainViewModel
 import edu.saletdiaz.pr_clase_07.model.Editorial
 import edu.saletdiaz.pr_clase_07.ui.components.AppScaffold
+import edu.saletdiaz.pr_clase_07.R
 
 /**Mostrar nombre, logo , año fundación, y URL del sitio web , boton favorites*/
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,9 +59,10 @@ fun EditorialScreen(viewModel: MainViewModel, onEditorialClick: (Int) -> Unit) {
     }
 
     AppScaffold(
-        "Editorials screen"
+        stringResource(R.string.txt_editorial)
     ) { paddingValues ->
             Column (modifier = Modifier.padding(paddingValues)){
+                /**Aqui haremos un control de errores, por si algo falla*/
                 if (error != null ) {
                     Text(text = "Error: $error", color = Color.Red, modifier = Modifier.padding(16.dp))
                     Button(
@@ -69,7 +71,7 @@ fun EditorialScreen(viewModel: MainViewModel, onEditorialClick: (Int) -> Unit) {
                             .padding(8.dp),
                         onClick = {viewModel.fetchEditorials()}
                     ) {
-                        Text("Update")
+                        Text(stringResource(R.string.btn_update))
                     }
                 } else {
                     PullToRefreshBox(
@@ -95,6 +97,8 @@ fun EditorialScreen(viewModel: MainViewModel, onEditorialClick: (Int) -> Unit) {
     }
 }
 
+/**Y más de lo mismo como tenemos en Comic, esta es una plantilla de una editorial y luego se recorre
+ * en la función de arriba*/
 @Composable
 fun EditorialCard(editorial: Editorial, onGoComic: () -> Unit, onFavorite: () -> Unit) {
     val uriHandler = LocalUriHandler.current
@@ -102,20 +106,20 @@ fun EditorialCard(editorial: Editorial, onGoComic: () -> Unit, onFavorite: () ->
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { onGoComic() }
+            .clickable { onGoComic() }  /*Aqui hice un clickable para que pueda ir a cada comic*/
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             ImagenConGlide(imageUrl = editorial.logo)
             Column(modifier = Modifier.padding(8.dp).weight(1f)) {
                 Text(text = editorial.editorial, style = MaterialTheme.typography.titleLarge)
-                Text(text = "Year foundation: ${editorial.year}", style = MaterialTheme.typography.bodySmall)
+                Text(text = "${stringResource(R.string.txt_year)}: ${editorial.year}", style = MaterialTheme.typography.bodySmall)
                 TextButton(
                     onClick = {
                         uriHandler.openUri(editorial.url)
                     },
                     modifier = Modifier.padding(top = 4.dp)
                 ) {
-                    Text(text = "open web", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = stringResource(R.string.txt_web), style = MaterialTheme.typography.bodyMedium)
                 }
                 IconButton(
                     onClick = { onFavorite() }
@@ -130,6 +134,8 @@ fun EditorialCard(editorial: Editorial, onGoComic: () -> Unit, onFavorite: () ->
         }
     }
 }
+
+/**Y como tenemos en comicScreen, tambien usamos aqui glide */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun ImagenConGlide(imageUrl: String) {

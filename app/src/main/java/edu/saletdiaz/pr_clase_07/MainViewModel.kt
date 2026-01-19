@@ -1,8 +1,6 @@
 package edu.saletdiaz.pr_clase_07
 
-import android.R.attr.id
 import android.app.Application
-import androidx.compose.ui.platform.LocalView
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import edu.saletdiaz.pr_clase_07.data.AppDatabase
@@ -69,7 +67,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
-    /*fun fetchComicsByEditorial(idEditorial: Int) {
+    fun fetchComicsByEditorial(idEditorial: Int) {
         viewModelScope.launch {
             _loading.value = true
             try {
@@ -88,19 +86,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             } finally {
                 _loading.value = false
             }
-        }
-    }*/
-    fun fetchComicsByEditorial(idEditorial: Int) {
-        viewModelScope.launch {
-            _loading.value = true
-            val res = repository.getComicsByEditorial(idEditorial)
-
-            val logo = _editorials.value.find { it.id == idEditorial }?.logo ?: ""
-
-            res.forEach { it.editorialLogo = logo }
-
-            _comics.value = res
-            _loading.value = false
         }
     }
 }

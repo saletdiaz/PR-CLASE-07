@@ -1,9 +1,7 @@
 package edu.saletdiaz.pr_clase_07.model
 
-import android.R
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 /**Clase editorial la cual tendrá como atributos
  * logo, nombre, año de fundación y

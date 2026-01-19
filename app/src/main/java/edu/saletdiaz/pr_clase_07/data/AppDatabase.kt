@@ -6,7 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import edu.saletdiaz.pr_clase_07.model.Comic
 import edu.saletdiaz.pr_clase_07.model.Editorial
-import edu.saletdiaz.pr_clase_07.ui.components.AppScaffold
 
 @Database(
     entities = [Editorial::class, Comic::class],

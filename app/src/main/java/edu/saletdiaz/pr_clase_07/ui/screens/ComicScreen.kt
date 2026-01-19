@@ -41,7 +41,6 @@ import edu.saletdiaz.pr_clase_07.R
 @Composable
 fun ComicScreen(idEditorial: Int, viewModel: MainViewModel, onBack: () -> Unit) {
     val comics by viewModel.comics.collectAsState()
-    val loading by viewModel.loading.collectAsState()
 
     LaunchedEffect(idEditorial) {
         viewModel.fetchComicsByEditorial(idEditorial)

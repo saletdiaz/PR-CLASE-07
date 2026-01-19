@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PR-CLASE-07</string>
+    <string name="txt_comic">COMICS OF THE EDITORIAL</string>
+    <string name="btn_back">BACK</string>
+    <string name="txt_editorial">EDITORIALS</string>
+    <string name="btn_update">UPDATE</string>
+    <string name="txt_year">Year fundation: </string>
+    <string name="txt_web">Open web: </string>
+    <string name="txt_author">By Salet Diaz </string>
 </resources>

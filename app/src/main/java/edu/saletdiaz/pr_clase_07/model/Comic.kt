@@ -15,10 +15,11 @@ data class Comic(
     val author: String?,
     val cover: String?,
     var editorialId: Int = 0,
-    /**Aqui aumentaremos el constructor de editorial
-    @Ignore // solo se usará para la UI
-    var editorialLogo: String = ""*/
+
 ) {
+    /**Utilizaremos esta variable para el logo de la editorial
+     * Lo ponemos como ignore, para que no la ponga en la base de datos pero si que la
+     * muestre en la UI*/
     @Ignore
     var editorialLogo: String = ""
 }
